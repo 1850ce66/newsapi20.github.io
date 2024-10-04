@@ -1,0 +1,61 @@
+    body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color:#FF00FF	;
+            background-color:rgba(0, 0, 255, 0.3);
+        }
+      h1:hover{ transform: rotate(10deg);}
+        .article {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .article h2 {
+            color: #1a5f7a;
+        }
+        .article p {
+            margin: 10px 0;
+        }
+        .article img {
+            max-width: 100%;
+            height: auto;
+        }
+        .custom-link {
+            text-decoration: none; /* 去掉底線 */
+          }
+          .custom-link:hover {
+            color: #9F35FF; /* 滑鼠懸停時的顏色 */
+          }
+          .footer{background-color: #FFD0FF	;
+                 padding: 100px;}
+                 :root {
+                    --primary-color: #007bff;
+                    --secondary-color: #6c757d;
+                    --background-color: #f0f0f0;
+                }
+                .article img {
+                    max-width: 100%;
+                    height: auto;
+                    margin: 10px 0;
+                    border-radius: 50px; /* 美觀化 */
+                }
+                .article p {
+                    line-height: 1.6;
+                    font-size: 16px;
+                }
+                .news-source {
+                    color: red;
+                }

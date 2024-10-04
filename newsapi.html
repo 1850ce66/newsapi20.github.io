@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>本日最新新聞節選</h1>
+        <div id="articles"></div>
+    </div>
+
+    <script>
+        const articlesList = [
+            {
+                title: "Nvidia stock slips on China trade fears - Yahoo Finance",
+                source: "Yahoo Entertainment",
+                author: "Laura Bratton",
+                publishedAt: "2024-09-30T16:24:07Z",
+                description: "Nvidia stock dropped in premarket trading before paring losses, following a report that China is urging local companies not to buy its AI chips.",
+                url: "https://finance.yahoo.com/news/nvidia-stock-slips-on-china-trade-fears-141418316.html/",
+                urlToImage: "https://s.yimg.com/ny/api/res/1.2/...0yr3g3ILWF6ELAyxM4Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0Mg--/https://s.yimg.com/os/creatr-uploaded-images/2024-08/4f470e30-5f94-11ef-b9ba-e776673d1ed4"
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function loadArticle() {
+            const article = articlesList[currentIndex];
+            const articlesContainer = document.getElementById('articles');
+            articlesContainer.innerHTML = `
+                <div class="article">
+                    <h2>${article.title}</h2>
+                    <p class="news-source"><strong>新聞來源:</strong> ${article.source}</p>
+                    <p><strong>作者:</strong> ${article.author || 'Not specified'}</p>
+                    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                    <p>${article.description || 'No description available.'}</p>
+                    <img src="${article.urlToImage || 'default-image.jpg'}" alt="Image for ${article.title}">
+                    <p><a href="${article.url}" target="_blank" class="custom-link">Read more</a></p>
+                </div>
+            `;
+
+            // Update index to simulate new articles
+            currentIndex = (currentIndex + 1) % articlesList.length;
+        }
+
+        // Initially load article
+        loadArticle();
+
+        // Automatically update articles every 10 seconds
+        setInterval(loadArticle, 10000);
+    </script>
+</body>
+</html>

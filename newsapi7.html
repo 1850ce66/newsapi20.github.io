@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>本日最新新聞節選</h1>
+    
+    <div id="articles-container"></div> <!-- 容納文章的容器 -->
+
+    <script>
+        // 模擬文章的數據
+        const articles = [
+            {
+                title: "McDonald’s and supermarkets failed to spot slavery",
+                source: "BBC News",
+                author: "William McLennan, Phil Shepka and Jon Ironmonger",
+                description: "Red flags went undetected as victims worked at a restaurant and a supermarket supplier, BBC finds.",
+                imgUrl: "https://ichef.bbci.co.uk/news/1024/branded_news/bfd6/live/ea6ae6e0-7ef0-11ef-bf4b-ef19cfbf3842.jpg",
+                link: "https://www.bbc.co.uk/news/articles/c2kdg84zj4wo",
+                publishedAt: "2024-09-30"
+            },
+        ];
+
+        // 動態生成文章的函數
+        function loadArticles() {
+            const container = document.getElementById('articles-container');
+
+            articles.forEach(article => {
+                // 創建文章的 div
+                const articleDiv = document.createElement('div');
+                articleDiv.classList.add('article');
+
+                // 生成文章內容
+                articleDiv.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p style="color:red"><strong>新聞來源:</strong> ${article.source}</p>
+                    <p><strong>作者:</strong> ${article.author}</p>
+                    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                    <p>${article.description}</p>
+                    <img src="${article.imgUrl}" alt="${article.title}">
+                    <a href="${article.link}" target="_blank" class="custom-link">Read more</a>
+                `;
+
+
+                // 把文章添加到容器中
+                container.appendChild(articleDiv);
+            });
+        }
+
+        // 加載文章
+        loadArticles();
+    </script>
+
+</body>
+</html>

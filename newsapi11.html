@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articles-container"></div>
+
+    <script>
+    // 新的文章數據
+    const article = {
+        "source": {
+            "id": "reuters",
+            "name": "Reuters"
+        },
+        "author": "Danial Azhar",
+        "title": "Oracle to invest $6.5 billion to set up cloud facilities in Malaysia ",
+        "description": "Oracle plans to invest more than $6.5 billion to set up its first public cloud region in Malaysia, the company said on Wednesday, the latest major investment by a global tech firm into the Southeast Asian country.",
+        "url": "https://www.reuters.com/technology/oracle-invest-65-billion-set-up-cloud-facilities-malaysia-2024-10-02/",
+        "urlToImage": "https://www.reuters.com/resizer/v2/BHH66UZN7BPDFCJJO6XYDNCISU.jpg?auth=485c8468a46793cf47f6f2b0c7cfbcfdf7c32cd8606def8f3c3949e5f92aff0a&height=1005&width=1920&quality=80&smart=true",
+        "publishedAt": "2024-10-02T01:01:00Z",
+        "content": null
+    };
+
+    // 找到 HTML 中的容器
+    const articlesContainer = document.getElementById('articles-container');
+
+    // 創建一個包含文章信息的 div
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+
+    // 設置文章的內容（標題、描述、圖片、來源等）
+    articleDiv.innerHTML = `
+        <h2>${article.title}</h2>
+        <p style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+        <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+        <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+        <p>${article.description}</p>
+        ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''}
+        <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+    `;
+
+    // 將這個 div 插入到 articles 容器中
+    articlesContainer.appendChild(articleDiv);
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日最新新聞</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>本日最新新聞節選</h1>
+  <div id="articles-container"></div>
+  <script>
+    // 假設這是你的 JSON 數據
+const article = {
+  "source": {
+    "id": "reuters",
+    "name": "Reuters"
+  },
+  "author": "David Shepardson",
+  "title": "Jeep owners should park outside pending recall fix, US agency says ",
+  "description": "The U.S. National Highway Traffic Safety Administration said owners of 154,000 Jeep plug-in hybrid electric SUVs should park outside and away from buildings or other vehicles until they get recall repairs completed.",
+  "url": "https://www.reuters.com/business/autos-transportation/jeep-owners-should-park-outside-pending-recall-fix-us-agency-says-2024-10-01/",
+  "urlToImage": "https://www.reuters.com/resizer/v2/GGLFFG4FCNLMXOE324EAZAJF3E.jpg?auth=2f291b740f732cf380e9ad900b6604b6cec2721aa60c094e584580293e8689ba&height=1005&width=1920&quality=80&smart=true",
+  "publishedAt": "2024-10-01T20:55:01Z",
+  "content": null
+};
+
+// 找到 HTML 中的容器
+const articlesContainer = document.getElementById('articles-container');
+
+// 創建一個包含文章信息的 div
+const articleDiv = document.createElement('div');
+articleDiv.classList.add('article');
+
+// 設置文章的內容（標題、描述、圖片、來源等）
+articleDiv.innerHTML = `
+  <h2>${article.title}</h2>
+    <p style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+  <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+  <p>${article.description}</p>
+  ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''}
+  <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+`;
+
+// 將這個 div 插入到 articles 容器中
+articlesContainer.appendChild(articleDiv);
+
+  </script>
+</body>
+</html>

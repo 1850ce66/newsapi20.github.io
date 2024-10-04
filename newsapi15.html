@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日最新新聞</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>本日最新新聞節選</h1>
+  <div id="articles-container"></div>
+<script>
+    // 假設 JSON 數據存在於這裡
+const jsonData = {
+  "status": "ok",
+  "totalResults": 36,
+  "articles": [
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": "Caroline Valetkevitch",
+      "title": "Indexes end down as Iran launches missiles at Israel; defense shares rise",
+      "description": "U.S. stocks ended lower, with the Nasdaq losing more than 1%, on Tuesday as investors grew more cautious after Iran fired missiles at Israel.",
+      "url": "https://www.reuters.com/markets/us/futures-dip-ahead-labor-data-powell-signals-modest-rate-cuts-2024-10-01/",
+      "urlToImage": "https://www.reuters.com/resizer/v2/52PXOOSM3NLVBJIRNOEDDX646I.jpg?auth=e11d46d05cd40b69b1a920d8bda760a034a7427c2de26a5d74acf586dc5293bf&height=1005&width=1920&quality=80&smart=true",
+      "publishedAt": "2024-10-01T23:29:44Z",
+      "content": null
+    }
+    // 其他文章
+  ]
+};
+
+// 找到 HTML 中的容器
+const articlesContainer = document.getElementById('articles-container');
+
+// 遍歷 JSON 數據中的每篇文章，並將其插入到頁面中
+jsonData.articles.forEach(article => {
+  // 創建一個包含文章信息的 div
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+
+  // 設置文章的內容（標題、描述、圖片、來源等）
+  articleDiv.innerHTML = `
+    <h2>${article.title}</h2>
+    <p class="news-source"><strong>新聞來源:</strong> ${article.source.name}</p>
+    <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+    <p>${article.description}</p>
+    <img src="${article.urlToImage || 'default-image.jpg'}" alt="Image for ${article.title}">
+    <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+  `;
+
+  // 將這個 div 插入到 articles 容器中
+  articlesContainer.appendChild(articleDiv);
+});
+
+</script>
+</body>
+</html>

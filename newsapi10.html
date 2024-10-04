@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articles-container"></div>
+
+    <script>
+    // 新的文章數據
+    const article = {
+        "source": {
+            "id": null,
+            "name": "ETF Daily News"
+        },
+        "author": "MarketBeat News",
+        "title": "3Chopt Investment Partners LLC Acquires New Holdings in Tesla, Inc. (NASDAQ:TSLA)",
+        "description": "3Chopt Investment Partners LLC purchased a new stake in Tesla, Inc. (NASDAQ:TSLA – Free Report) during the 2nd quarter, Holdings Channel reports. The fund purchased 6,684 shares of the electric vehicle producer's stock, valued at approximately $1,323,000. Oth…",
+        "url": "https://www.etfdailynews.com/2024/10/01/3chopt-investment-partners-llc-acquires-new-holdings-in-tesla-inc-nasdaqtsla/",
+        "urlToImage": "https://www.americanbankingnews.com/wp-content/timthumb/timthumb.php?src=https://www.marketbeat.com/logos/tesla-inc-logo-1200x675.png?v=20221020135629&w=240&h=240&zc=2",
+        "publishedAt": "2024-10-01T22:52:44Z",
+    };
+
+    // 找到 HTML 中的容器
+    const articlesContainer = document.getElementById('articles-container');
+
+    // 創建一個包含文章信息的 div
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+
+    // 設置文章的內容（標題、描述、圖片、來源等）
+    articleDiv.innerHTML = `
+        <h2>${article.title}</h2>
+        <p style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+        <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+        <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+        <p>${article.description}</p>
+        ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : '<p>No image available</p>'}
+        <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+    `;
+
+    // 將這個 div 插入到 articles 容器中
+    articlesContainer.appendChild(articleDiv);
+    </script>
+</body>
+</html>

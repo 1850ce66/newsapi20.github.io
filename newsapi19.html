@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日最新新聞</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>本日最新新聞節選</h1>
+  <div id="articles-container"></div>
+  <script>// 假設這是你的 JSON 數據
+    const article = {
+      "source": {
+        "id": null,
+        "name": "Barron's"
+      },
+      "author": "Andrew Welsch",
+      "title": "LPL Fires CEO Over Alleged Misconduct. The Stock Is Falling.",
+      "description": "The company’s board of directors said it terminated Dan Arnold as CEO and appointed Rich Steinmeier, the company’s chief growth officer, as interim CEO effective immediately.",
+      "url": "https://www.barrons.com/advisor/articles/lpl-financial-ceo-dan-arnold-terminated-2040cabd",
+      "urlToImage": "https://images.barrons.com/im-25245134/social",
+      "publishedAt": "2024-10-01T21:58:00Z",
+      "content": "LPL Financials board of directors said late Tuesday that it had terminated CEO and President Dan Arnold for making statements to employees that violated the companys code of conduct."
+    };
+    
+    // 找到 HTML 中的容器
+    const articlesContainer = document.getElementById('articles-container');
+    
+    // 創建一個包含文章信息的 div
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+    
+    // 設置文章的內容（標題、描述、圖片、來源等）
+    articleDiv.innerHTML = `
+       <h2>${article.title}</h2>
+   <p  style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+  <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+  <p>${article.description}</p>
+  ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''}
+    <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+    `;
+    
+    // 將這個 div 插入到 articles 容器中
+    articlesContainer.appendChild(articleDiv);
+    </script>
+</body>
+</html>

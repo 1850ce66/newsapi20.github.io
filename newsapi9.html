@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>本日最新新聞節選</h1>
+
+<div id="articles-container"></div> <!-- 容納文章的容器 -->
+
+<script>
+    // 模擬文章的數據
+    const articles = [
+        {
+            title: "How port strikes could impact America's supply chain",
+            source: "CBS News",
+            author: "CBS News",
+            description: "More than 40,000 U.S. dockworkers could walk off the job soon if their union doesn't reach an agreement over a new contract with the shipping industry. CBS News New York's Tim McNicholas reports.",
+            publishedAt: "2024-09-30T19:23:00+00:00",
+            imgUrl: "https://assets1.cbsnewsstatic.com/hub/i/r/2024/09/30/3dae06ff-66b2-4808-a23b-568a3500db81/thumbnail/1200x630/66a0237fb00d0364b306edd3b88fccae/cbsn-fusion-how-port-strikes-could-impact-americas-supply-chain-thumbnail.jpg?v=fa529222a2be3543711c1a879b51e860",
+            link: "https://www.cbsnews.com/video/how-port-strikes-could-impact-americas-supply-chain/"
+        }
+        // 可以在這裡添加更多文章
+    ];
+
+    // 動態生成文章的函數
+    function loadArticles() {
+        const container = document.getElementById('articles-container');
+
+        articles.forEach(article => {
+            // 創建文章的 div
+            const articleDiv = document.createElement('div');
+            articleDiv.classList.add('article');
+
+            // 生成文章內容
+            articleDiv.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p style="color:red"><strong>新聞來源:</strong> ${article.source}</p>
+                    <p><strong>作者:</strong> ${article.author}</p>
+                    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                    <p>${article.description}</p>
+                    <img src="${article.imgUrl}" alt="${article.title}">
+                    <a href="${article.link}" target="_blank" class="custom-link">Read more</a>
+                `;
+
+            // 把文章添加到容器中
+            container.appendChild(articleDiv);
+        });
+    }
+
+    // 加載文章
+    loadArticles();
+</script>
+
+</body>
+</html>

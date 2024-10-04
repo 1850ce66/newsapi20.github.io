@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日最新新聞</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>本日最新新聞節選</h1>
+  <div id="articles-container"></div>
+  <script>
+    // 假設這是你的 JSON 數據
+const article = {
+  "source": {
+    "id": "cnn",
+    "name": "CNN"
+  },
+  "author": "Brian Stelter",
+  "title": "CNN launches a digital paywall, charging some users to read articles for the first time ",
+  "description": "CNN, one of the most popular news websites in the world, is starting to ask some of its visitors to pay $3.99 a month for access.",
+  "url": "https://www.cnn.com/2024/10/01/media/cnn-launch-digital-subscription-paywall/index.html",
+  "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/c-gettyimages-2158959423.jpg?c=16x9&q=w_800,c_fill",
+  "publishedAt": "2024-10-01T20:08:00Z",
+  "content": "CNN, one of the most popular news websites in the world, is starting to ask some of its visitors to pay $3.99 a month for access."
+};
+
+// 找到 HTML 中的容器
+const articlesContainer = document.getElementById('articles-container');
+
+// 創建一個包含文章信息的 div
+const articleDiv = document.createElement('div');
+articleDiv.classList.add('article');
+
+// 設置文章的內容（標題、描述、圖片、來源等）
+articleDiv.innerHTML = `
+  <h2>${article.title}</h2>
+   <p  style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+  <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+  <p>${article.description}</p>
+  ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''}
+    <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+`;
+
+// 將這個 div 插入到 articles 容器中
+articlesContainer.appendChild(articleDiv);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>本日最新新聞節選</h1>
+    
+    <div id="articles-container"></div> <!-- 容納文章的容器 -->
+
+    <script>
+        // 模擬文章的數據
+        const articles = [
+            {
+                title: "Strike poised to shut down major US ports",
+                source: "BBC News",
+                author: "Natalie Sherman",
+                description: "The strike is set to significantly disrupt trade, creating uncertainty ahead of the US election.",
+                imgUrl: "https://ichef.bbci.co.uk/news/1024/branded_news/a35f/live/ac636200-7f45-11ef-b424-67cd1e4179ac.jpg",
+                link: "https://www.bbc.co.uk/news/articles/c3vkdp3rx17o",
+                publishedAt: "2024-09-30"
+            },
+        ];
+
+        // 動態生成文章的函數
+        function loadArticles() {
+            const container = document.getElementById('articles-container');
+
+            articles.forEach(article => {
+                // 創建文章的 div
+                const articleDiv = document.createElement('div');
+                articleDiv.classList.add('article');
+
+                // 生成文章內容
+                articleDiv.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p style="color:red"><strong>新聞來源:</strong> ${article.source}</p>
+                    <p><strong>作者:</strong> ${article.author}</p>
+                    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                    <p>${article.description}</p>
+                    <img src="${article.imgUrl}" alt="${article.title}">
+                    <a href="${article.link}" target="_blank" class="custom-link">Read more</a>
+                `;
+
+                // 把文章添加到容器中
+                container.appendChild(articleDiv);
+            });
+        }
+
+        // 加載文章
+        loadArticles();
+    </script>
+
+</body>
+</html>

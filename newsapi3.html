@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articlesContainer"></div> <!-- 容器，用於動態生成的文章 -->
+
+    <script>
+        // 定義文章數據
+        const articles = [
+            {
+                author: "Andy Kalmowitz",
+                source: "Jalopnik",
+                title: "Hurricane Helene's Devastation Of A Small Town In North Carolina Could Spell Disaster For Global Automotive Industry ",
+                description: "Spruce Pine, North Carolina is the world's leading source of high-purity quartz for semiconductors, and it's been horribly impacted by hurricane Helene.",
+                imageUrl: "https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/42bdfb4ba231af6acc0046e1eb1bd1de.jpg",
+                url: "https://jalopnik.com/hurricane-helenes-devastation-of-a-small-town-in-north-1851660775",
+                publishedAt: "2024-09-30T18:15:00Z"
+            }
+        ];
+
+        // 渲染文章
+        function renderArticles() {
+            const articlesContainer = document.getElementById('articlesContainer');
+            articles.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.classList.add('article');
+                articleElement.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p style="color:red"><strong>新聞來源:</strong> ${article.source}</p>
+                    <p><strong>作者:</strong> ${article.author}</p>
+                    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                    <p>${article.description}</p>
+                    <img src="${article.imageUrl}" alt="Article Image">
+                    <a href="${article.url}" target="_blank"  class="custom-link">Read more</a>
+                `;
+                articlesContainer.appendChild(articleElement);
+            });
+        }
+
+        // 初始化渲染
+        renderArticles();
+    </script>
+</body>
+</html>

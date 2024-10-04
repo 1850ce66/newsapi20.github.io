@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日最新新聞</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>本日最新新聞節選</h1>
+  <div id="articles-container"></div>
+<script>
+    // 假設 JSON 數據存在於這裡
+const jsonData = {
+  "status": "ok",
+  "totalResults": 36,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "Fox Business"
+      },
+      "author": "Breck Dumas",
+      "title": "Port strike union leader Harold Daggett: What to know",
+      "description": "What to know about International Longshorman's Association President Harold Daggert, the union's chief negotiator as dockworkers strike at ports across the U.S.",
+      "url": "https://www.foxbusiness.com/lifestyle/port-strike-union-leader-harold-daggett-what-know",
+      "urlToImage": "https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2024/10/0/0/harold-daggett.jpg?ve=1&tl=1",
+      "publishedAt": "2024-10-01T23:42:00Z",
+      "content": "International Longshoreman's Association (ILA) President Harold Daggett has jumped into the national spotlight as he heads up negotiations for the union in its strike at ports across the U.S."
+    },
+  ]
+};
+
+// 找到 HTML 中的容器
+const articlesContainer = document.getElementById('articles-container');
+
+// 遍歷 JSON 數據中的每篇文章，並將其插入到頁面中
+jsonData.articles.forEach(article => {
+  // 創建一個包含文章信息的 div
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+
+  // 設置文章的內容（標題、描述、圖片、來源等）
+  articleDiv.innerHTML = `
+   <h2>${article.title}</h2>
+   <p  style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+  <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+  <p>${article.description}</p>
+  ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''}
+    <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+  `;
+
+  // 將這個 div 插入到 articles 容器中
+  articlesContainer.appendChild(articleDiv);
+});
+
+</script>
+</body>
+</html>

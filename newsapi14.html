@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articles"></div>
+
+    <script>
+        // 假設你的 JSON 資料
+        const data = {
+            "status": "ok",
+            "totalResults": 25,
+            "articles": [
+                {
+                    "source": { "id": null, "name": "SFGate" },
+                    "author": "Katie Dowd",
+                    "title": "Massive Verizon outage downs service across California and US ",
+                    "description": "If you're a Verizon customer and your phone won't make calls on Monday, you are not alone.",
+                    "url": "https://www.sfgate.com/bayarea/article/verizon-outage-service-down-california-us-19804140.php",
+                    "urlToImage": "https://s.hdnux.com/photos/01/16/53/04/20623647/4/rawImage.jpg",
+                    "publishedAt": "2024-10-01T00:45:00Z",
+                    "content": "FILE - This April 23, 2018, file photo shows the logo for Verizon above a trading post on the floor of the New York Stock Exchange. Verizon customers experienced service outages across the United Sta… [+1605 chars]"
+                }
+            ]
+        };
+
+        // 動態寫入 HTML 的程式碼
+        const articlesContainer = document.getElementById('articles');
+
+        // 迭代 JSON 資料並生成 HTML
+        data.articles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('article');
+
+            articleElement.innerHTML = `
+                <h2>${article.title}</h2>
+                <p class="news-source"><strong>新聞來源:</strong> ${article.source.name}</p>
+                <p><strong>作者:</strong> ${article.author || 'Unknown'}</p>
+                <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                <p>${article.description}</p>
+                <img src="${article.urlToImage || 'default-image.jpg'}" alt="Image for ${article.title}">
+                <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+
+
+            `;
+
+            // 將生成的 HTML 加入 articles 容器
+            articlesContainer.appendChild(articleElement);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>本日最新新聞節選</h1> 
+        <div id="articles">
+        </div>
+    </div>
+
+    <script>
+        const articlesData = {
+            "status": "ok",
+            "totalResults": 58,
+            "articles": [
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Yahoo Entertainment"
+                    },
+                    "author": "Josh Schafer",
+                    "title": "Stock market today: Dow, S&P 500 hit fresh records to cap strong September, quarter - Yahoo Finance",
+                    "description": "The market is bracing for the September US jobs report, set to test the upbeat tone in stocks.",
+                    "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-hit-fresh-records-to-cap-strong-september-quarter-145516820.html",
+                    "urlToImage": "https://s.yimg.com/ny/api/res/1.2/EYaeyIMTV96aAqIw5QYF6A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-uploaded-images/2024-08/916d9ce0-69e2-11ef-bdfd-cb26a6a25b79",
+                    "publishedAt": "2024-09-30T20:10:00Z",
+                    "content": "US stocks bid farewell to the month and the quarter with fresh records as investors reacted to Federal Reserve Chair Jerome Powell vowing to do what it takes to keep the economy humming, while signal… [+12005 chars]"
+                },
+                // ... other articles ...
+            ]
+        };
+
+        const articlesContainer = document.getElementById('articles');
+        const fragment = document.createDocumentFragment();
+
+        articlesData.articles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.className = 'article';
+            articleElement.innerHTML = `
+                <h2>${article.title}</h2>
+                <p style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+                <p><strong>作者:</strong> ${article.author || 'Not specified'}</p>
+                <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+                <p>${article.description || 'No description available.'}</p>
+                ${article.urlToImage ? `<img src="${article.urlToImage}" alt="Article image">` : ''}
+                <p><a href="${article.url}" target="_blank" class="custom-link">Read more</a></p>
+            `;
+            articlesContainer.appendChild(articleElement);
+        });
+    </script>
+</body>
+</html>

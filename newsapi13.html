@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articles-container"></div>
+
+    <script>
+    // 新的文章數據
+    const newsData = {
+        "source": {
+            "id": "cnn",
+            "name": "CNN"
+        },
+        "author": "Ramishah Maruf",
+        "title": "Howard Schultz violated labor law by telling employee ‘if you’re not happy at Starbucks, you can go work for another company’",
+        "description": "Starbucks’ Howard Schultz, who was interim CEO at the time, broke federal labor law in 2022 by telling a California barista who raised concerns about unionization that “if you’re not happy at Starbucks, you can go work for another company.”",
+        "url": "https://www.cnn.com/2024/10/03/business/howard-schultz-starbucks-labor-law/index.html",
+        "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1477842349-copy.jpg?c=16x9&q=w_800,c_fill",
+        "publishedAt": "2024-10-03T21:09:00Z",
+        "content": "Starbucks Howard Schultz, who was interim CEO at the time, broke federal labor law in 2022 by telling a California barista who raised concerns about unionization that if youre not happy at Starbucks,… [+3448 chars]"
+    };
+
+    // 找到 HTML 中的容器
+    const articlesContainer = document.getElementById('articles-container');
+
+    // 創建一個包含文章信息的 div
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+
+    // 設置文章的內容（標題、描述、圖片、來源等）
+    articleDiv.innerHTML = `
+    <h2>${newsData.title || 'No title available'}</h2>
+    <p class="news-source"><strong>新聞來源:</strong> ${newsData.source.name || 'Unknown'}</p>
+    <p><strong>作者:</strong> ${newsData.author || 'Not specified'}</p>
+    <p><strong>刊登時間:</strong> ${new Date(newsData.publishedAt).toLocaleString() || 'Unknown'}</p>
+    <p>${newsData.description || 'No description available'}</p>
+    ${newsData.urlToImage ? `<img src="${newsData.urlToImage}" alt="${newsData.title}">` : '<p>No image available</p>'}
+    <a href="${newsData.url}" target="_blank" class="custom-link">Read more</a>
+`;
+
+    // 將這個 div 插入到 articles 容器中
+    articlesContainer.appendChild(articleDiv);
+    </script>
+</body>
+</html>

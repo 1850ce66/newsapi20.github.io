@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日最新新聞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>本日最新新聞節選</h1>
+    <div id="articles-container"></div>
+
+    <script>
+    // 新的文章數據
+    const article = {
+        "source": {
+            "id": "cbs-news",
+            "name": "CBS News"
+        },
+        "author": null,
+        "title": "Ex-Jaguars employee who stole from team sues FanDuel for $250 million",
+        "description": "Amit Patel, who is serving 6 1/2 years, filed a lawsuit claiming that FanDuel ignored its own responsible gambling and anti-money laundering protocols.",
+        "url": "https://www.cbsnews.com/news/amit-patel-lawsuit-fanduel-stole-jaguars-gambling/",
+        "urlToImage": "https://assets3.cbsnewsstatic.com/hub/i/r/2020/01/09/6e7918be-7785-43c1-bb94-8db3c91a1abc/thumbnail/1200x630/42b94ccd05ee7b7563b3840cad1172a4/fanduel-2005323-640x360.jpg?v=fa529222a2be3543711c1a879b51e860",
+        "publishedAt": "2024-10-01T22:03:34Z",
+    };
+
+    // 找到 HTML 中的容器
+    const articlesContainer = document.getElementById('articles-container');
+
+    // 創建一個包含文章信息的 div
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+
+    // 設置文章的內容（標題、描述、圖片、來源等）
+    articleDiv.innerHTML = `
+        <h2>${article.title}</h2>
+        <p style="color:red"><strong>新聞來源:</strong> ${article.source.name}</p>
+        <p><strong>作者:</strong> ${article.author || 'Not specified'}</p>
+        <p><strong>刊登時間:</strong> ${new Date(article.publishedAt).toLocaleString()}</p>
+        <p>${article.description}</p>
+        ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}" class="article-image">` : '<p>No image available</p>'}
+        <a href="${article.url}" target="_blank" class="custom-link">Read more</a>
+    `;
+
+    // 將這個 div 插入到 articles 容器中
+    articlesContainer.appendChild(articleDiv);
+    </script>
+</body>
+</html>
